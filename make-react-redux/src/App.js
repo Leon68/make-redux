@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import PropTypes from 'prop-types'
 import './App.css';
 import Header from "./components/Header";
 import Content from "./components/Content";
@@ -32,13 +32,20 @@ const themeReducer = (state, action) => {
 const store = createStore(themeReducer)
 
 class App extends Component {
+    static childContextTypes = {
+        store: PropTypes.object
+    }
+
+    getChildContext () {
+        return { store }
+    }
   render() {
     return (
       <div className="App">
           <Header/>
           <Content/>
       </div>
-    );
+    )
   }
 }
 
